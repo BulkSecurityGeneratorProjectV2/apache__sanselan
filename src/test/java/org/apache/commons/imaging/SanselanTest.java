@@ -19,6 +19,7 @@ package org.apache.commons.imaging;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public abstract class SanselanTest extends TestCase implements
             tempFolder.mkdirs();
         assertTrue(tempFolder.isDirectory());
 
-        File result = File.createTempFile(prefix, suffix, tempFolder);
+        File result = Files.createTempFile(tempFolder.toPath(), prefix, suffix).toFile();
         result.deleteOnExit();
         return result;
     }
